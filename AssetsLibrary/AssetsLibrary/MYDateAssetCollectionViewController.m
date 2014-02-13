@@ -42,13 +42,13 @@
 
 - (void)setupAssetsLibrary{
     self.allAssets = [NSMutableArray array];
-    self.sections = [NSMutableDictionary array];
+    self.sections = [[NSMutableDictionary alloc] init];
     //    self.assetsLibrary = [[ALAssetsLibrary alloc] init];
     ALAssetsGroupType assetsGroupType = ALAssetsGroupAlbum | ALAssetsGroupEvent | ALAssetsGroupFaces | ALAssetsGroupSavedPhotos;
     
     ALAssetsGroupEnumerationResultsBlock groupResultBlock= ^(ALAsset *asset, NSUInteger index, BOOL *stop){
 //        [assetList addObject:@{@0 : asset, @1 : [asset valueForProperty:ALAssetPropertyDate]}];
-        NSLog(@"%@",asset);
+//        NSLog(@"%@",asset);
         if ( asset ){
             [self.allAssets addObject:@{@0 : asset, @1:[asset valueForProperty:ALAssetPropertyDate]}];
         }
@@ -121,7 +121,7 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return [self.sections count];
+    return 0;//[self.sections count];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -142,7 +142,7 @@
 //            count = self.sections[
 //        }
 //    }
-    return 3;
+    return [self.allAssets count];
 }
 
 // Method to create cell at index path
@@ -164,7 +164,7 @@
 //        }
 //        i++;
 //    }
-    ALAsset *asset = [self.allAssets objectAtIndex:indexPath.row];
+    ALAsset *asset = [self.allAssets objectAtIndex:indexPath.row][@0];
     UIImage *img   = [UIImage imageWithCGImage:[asset thumbnail]];
     
     UIImageView *imgView = [[UIImageView alloc] init]; // [[UIImageView alloc] initWithImage:[[self.assets objectAtIndex:indexPath.section] objectAtIndex:indexPath.item]];
