@@ -60,7 +60,7 @@
     UICollectionViewFlowLayout *layout = [[[UICollectionViewFlowLayout alloc] init] autorelease];
     
     layout.itemSize                = imageFrame.size;          // CGSizeMake(50, 50); // セルのサイズ
-    layout.headerReferenceSize     = CGSizeMake(0, 0);              // セクションごとのヘッダーのサイズ
+    layout.headerReferenceSize     = CGSizeMake(320, 25);              // セクションごとのヘッダーのサイズ
     layout.footerReferenceSize     = CGSizeMake(0, 0);              // セクションごとのフッターのサイズ
     layout.minimumLineSpacing      = 5.0;                           // 行ごとのスペースの最小値
     layout.minimumInteritemSpacing = 5.0;                           // アイテムごとのスペースの最小値

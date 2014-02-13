@@ -8,8 +8,10 @@
 
 #import "MYDateAssetCollectionViewController.h"
 
+
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "AssetsAccessor.h"
+#import "MYCollectionHeaderView.h"
 
 @interface MYDateAssetCollectionViewController ()
 
@@ -20,11 +22,9 @@
 #define ASSET    @0
 #define DATE     @1
 #define DATE_STR @2
-#define COUNT @3
-#define INDEX @4
 
-@synthesize allAssets     = allAssets_;
-@synthesize assetsSection = assetsSection_;
+@synthesize sectionList = sectionList_;
+@synthesize assetsData  = assetsData_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,6 +44,7 @@
     
     [self.collectionView setBackgroundColor:[UIColor whiteColor]];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
+    [self.collectionView registerClass:[MYCollectionHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
 }
 
 /**
@@ -51,8 +52,10 @@
  */
 - (void)setupAssetsLibrary
 {
-    self.allAssets     = [[NSMutableArray alloc] init];
-    self.assetsSection = [[NSMutableArray alloc] init];
+    NSMutableArray *allAssets = [[NSMutableArray alloc] init];
+    
+    self.sectionList = [[NSMutableArray alloc] init];
+    self.assetsData  = [[NSMutableDictionary alloc] init];
     
     // Assetsのグループタイプ
     ALAssetsGroupType assetsGroupType = ALAssetsGroupAlbum | ALAssetsGroupEvent | ALAssetsGroupFaces | ALAssetsGroupSavedPhotos;
@@ -64,22 +67,16 @@
     // アセットライブラリから取得したグループ内のアセットごとの処理
     ALAssetsGroupEnumerationResultsBlock groupResultBlock = ^(ALAsset *asset, NSUInteger index, BOOL *stop) {
         if (asset) {
-            NSDate *assetDate = [asset valueForProperty:ALAssetPropertyDate];
-            NSString *assetDateStr =[formatter stringFromDate:assetDate];
-//            if ( !self.assetsSection[assetDateStr] ){
-//                [self.assetsSection setObject:@1 forKey:assetDateStr];
-//            } else {
-//                NSInteger count = [self.assetsSection[assetDateStr] intValue];
-//                count++;
-//                [self.assetsSection setObject:@(count) forKey:assetDateStr];
-//            }
-            [self.allAssets addObject:@{ ASSET: asset, DATE: assetDate, DATE_STR: assetDateStr}];
+            NSDate   *assetDate    = [asset valueForProperty:ALAssetPropertyDate];
+            NSString *assetDateStr = [formatter stringFromDate:assetDate];
+            [allAssets addObject:@{ ASSET: asset, DATE: assetDate, DATE_STR: assetDateStr }];
         }
     };
     
     NSComparator comparetor = ^NSComparisonResult (id obj1, id obj2) {
         NSDate *datea = obj1[DATE];
         NSDate *dateb = obj2[DATE];
+        
         return [dateb compare:datea];
     };
     
@@ -95,24 +92,21 @@
             }
         } else {
             // 全体sort
-            [self.allAssets sortWithOptions:NSSortConcurrent usingComparator:comparetor];
+            [allAssets sortWithOptions:NSSortConcurrent usingComparator:comparetor];
+            for (NSDictionary *asset in allAssets) {
+                NSString *dateStr = asset[DATE_STR];
+                if (self.assetsData[dateStr]) {   // 存在していたら
+                    [self.assetsData[dateStr] addObject:asset[ASSET]];
+                } else {
+                    NSMutableArray *sectionArray = [[NSMutableArray alloc] init];
+                    [sectionArray addObject:asset[ASSET]];
+                    [self.assetsData setObject:sectionArray forKey:dateStr];
+                    [sectionArray release];
+                    [self.sectionList addObject:dateStr];
+                }
+            }
             
-            
-//            int index = 0;
-//            for (NSDictionary *asset in allAssets) {
-//                NSString *dateStr = asset[DATE_STR];
-//                
-            
-//                if ( !self.assetsSection[dateStr] ){
-//                    [assetsSection setObject:@{COUNT: @1, DATE_STR:@(index), ASSET:asset} forKey:dateStr];
-//                    index++;
-//                } else {
-//                    NSInteger count = [self.assetsSection[dateStr][COUNT] intValue];
-//                    NSInteger assetIndex = [self.assetsSection[dateStr][INDEX] intValue];
-//                    count++;
-//                    [self.assetsSection setObject:@{COUNT: @1, INDEX:@(assetIndex)} forKey:dateStr];
-//                }
-//            }
+            [allAssets release];
             [self.collectionView reloadData];
         }
     };
@@ -135,12 +129,24 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;//[self.assetsSection count];
+    return [self.sectionList count]; // [self.assetsSection count];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+    return [self.assetsData[self.sectionList[section]] count];
+}
+
+
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    MYCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                                                withReuseIdentifier:@"header"
+                                                                       forIndexPath:indexPath];
+    
+    headerView.title.text = self.sectionList[indexPath.section];
+    return headerView;
 }
 
 // Method to create cell at index path
@@ -152,8 +158,8 @@
     static NSString      *cellID = @"UICollectionViewCell";
     UICollectionViewCell *cell   = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     
-    
-    ALAsset *asset = [self.allAssets objectAtIndex:(indexPath.row)][ASSET];
+//    ALAsset *asset = [self.allAssets objectAtIndex:(indexPath.row)][ASSET];
+    ALAsset *asset = self.assetsData[self.sectionList[indexPath.section]][indexPath.row];
     UIImage *img   = [UIImage imageWithCGImage:[asset thumbnail]];
     
     UIImageView *imgView = [[UIImageView alloc] init]; // [[UIImageView alloc] initWithImage:[[self.assets objectAtIndex:indexPath.section] objectAtIndex:indexPath.item]];
