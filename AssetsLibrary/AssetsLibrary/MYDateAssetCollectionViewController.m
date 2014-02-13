@@ -52,7 +52,7 @@
 - (void)setupAssetsLibrary
 {
     self.allAssets     = [[NSMutableArray alloc] init];
-    self.assetsSection = [[NSMutableDictionary alloc] init];
+    self.assetsSection = [[NSMutableArray alloc] init];
     
     // Assetsのグループタイプ
     ALAssetsGroupType assetsGroupType = ALAssetsGroupAlbum | ALAssetsGroupEvent | ALAssetsGroupFaces | ALAssetsGroupSavedPhotos;
@@ -94,22 +94,25 @@
                 [assetsGroup enumerateAssetsUsingBlock:groupResultBlock];
             }
         } else {
-            // sort
+            // 全体sort
             [self.allAssets sortWithOptions:NSSortConcurrent usingComparator:comparetor];
-            int index = 0;
-            for (NSDictionary *asset in self.allAssets) {
-                NSString *dateStr = asset[DATE_STR];
-                
-                if ( !self.assetsSection[dateStr] ){
-                    [self.assetsSection setObject:@{COUNT: @1, DATE_STR:@(index)} forKey:dateStr];
-                    index++;
-                } else {
-                    NSInteger count = [self.assetsSection[dateStr][COUNT] intValue];
-                    NSInteger assetIndex = [self.assetsSection[dateStr][INDEX] intValue];
-                    count++;
-                    [self.assetsSection setObject:@{COUNT: @1, INDEX:@(assetIndex)} forKey:dateStr];
-                }
-            }
+            
+            
+//            int index = 0;
+//            for (NSDictionary *asset in allAssets) {
+//                NSString *dateStr = asset[DATE_STR];
+//                
+            
+//                if ( !self.assetsSection[dateStr] ){
+//                    [assetsSection setObject:@{COUNT: @1, DATE_STR:@(index), ASSET:asset} forKey:dateStr];
+//                    index++;
+//                } else {
+//                    NSInteger count = [self.assetsSection[dateStr][COUNT] intValue];
+//                    NSInteger assetIndex = [self.assetsSection[dateStr][INDEX] intValue];
+//                    count++;
+//                    [self.assetsSection setObject:@{COUNT: @1, INDEX:@(assetIndex)} forKey:dateStr];
+//                }
+//            }
             [self.collectionView reloadData];
         }
     };
@@ -132,19 +135,12 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return [self.assetsSection count];
+    return 1;//[self.assetsSection count];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    NSInteger count = 0;
-    for (NSDictionary *data in [self.assetsSection allValues] ) {
-        if ( [data[INDEX] intValue] == section ){
-            count = [data[COUNT] intValue];
-            break;
-        }
-    }
-    return count;//[self.assetsSection ];
+    return 5;
 }
 
 // Method to create cell at index path
@@ -157,19 +153,7 @@
     UICollectionViewCell *cell   = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     
     
-    NSInteger count = 0;
-    NSInteger sum = 0;
-    for (NSDictionary *data in [self.assetsSection allValues] ) {
-        sum += [data[COUNT] intValue];
-        if ( [data[INDEX] intValue] == indexPath.section ){
-            count = [data[COUNT] intValue];
-            break;
-        }
-    }
-    
-    
-    
-    ALAsset *asset = [self.allAssets objectAtIndex:(indexPath.row + sum )][ASSET];
+    ALAsset *asset = [self.allAssets objectAtIndex:(indexPath.row)][ASSET];
     UIImage *img   = [UIImage imageWithCGImage:[asset thumbnail]];
     
     UIImageView *imgView = [[UIImageView alloc] init]; // [[UIImageView alloc] initWithImage:[[self.assets objectAtIndex:indexPath.section] objectAtIndex:indexPath.item]];

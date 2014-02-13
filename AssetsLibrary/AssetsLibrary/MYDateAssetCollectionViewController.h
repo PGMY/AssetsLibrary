@@ -10,10 +10,10 @@
 
 @interface MYDateAssetCollectionViewController : UICollectionViewController {
     NSMutableArray *allAssets_;
-    NSMutableDictionary *assetsSection_;
+    NSMutableArray *assetsSection_;
 }
 
 @property (strong, nonatomic) NSMutableArray *allAssets;
-@property (strong, nonatomic) NSMutableDictionary *assetsSection;
+@property (strong, nonatomic) NSMutableArray *assetsSection;
 
 @end
