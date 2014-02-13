@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		405AA2D018AAF8230020FD06 /* MYAssetsGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 405AA2CF18AAF8230020FD06 /* MYAssetsGroupViewController.m */; };
+		405AA2D318AAFCEB0020FD06 /* AssetsAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 405AA2D218AAFCEB0020FD06 /* AssetsAccessor.m */; };
+		405AA2D618AB34C90020FD06 /* MYAssetsGroupCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 405AA2D518AB34C90020FD06 /* MYAssetsGroupCollectionViewController.m */; };
+		405AA2D918AB4F1E0020FD06 /* MYDateAssetCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 405AA2D818AB4F1E0020FD06 /* MYDateAssetCollectionViewController.m */; };
 		40BB9DDA18A8CE0F00315B48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40BB9DD918A8CE0F00315B48 /* Foundation.framework */; };
 		40BB9DDC18A8CE0F00315B48 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40BB9DDB18A8CE0F00315B48 /* CoreGraphics.framework */; };
 		40BB9DDE18A8CE0F00315B48 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40BB9DDD18A8CE0F00315B48 /* UIKit.framework */; };
@@ -19,6 +23,7 @@
 		40BB9DF518A8CE0F00315B48 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40BB9DDD18A8CE0F00315B48 /* UIKit.framework */; };
 		40BB9DFD18A8CE0F00315B48 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40BB9DFB18A8CE0F00315B48 /* InfoPlist.strings */; };
 		40BB9DFF18A8CE0F00315B48 /* AssetsLibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BB9DFE18A8CE0F00315B48 /* AssetsLibraryTests.m */; };
+		40BB9E0A18A8CE4500315B48 /* MYRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BB9E0918A8CE4500315B48 /* MYRootViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +37,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		405AA2CE18AAF8230020FD06 /* MYAssetsGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYAssetsGroupViewController.h; sourceTree = "<group>"; };
+		405AA2CF18AAF8230020FD06 /* MYAssetsGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYAssetsGroupViewController.m; sourceTree = "<group>"; };
+		405AA2D118AAFCEB0020FD06 /* AssetsAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetsAccessor.h; sourceTree = "<group>"; };
+		405AA2D218AAFCEB0020FD06 /* AssetsAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetsAccessor.m; sourceTree = "<group>"; };
+		405AA2D418AB34C90020FD06 /* MYAssetsGroupCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYAssetsGroupCollectionViewController.h; sourceTree = "<group>"; };
+		405AA2D518AB34C90020FD06 /* MYAssetsGroupCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYAssetsGroupCollectionViewController.m; sourceTree = "<group>"; };
+		405AA2D718AB4F1E0020FD06 /* MYDateAssetCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYDateAssetCollectionViewController.h; sourceTree = "<group>"; };
+		405AA2D818AB4F1E0020FD06 /* MYDateAssetCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYDateAssetCollectionViewController.m; sourceTree = "<group>"; };
 		40BB9DD618A8CE0F00315B48 /* AssetsLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssetsLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40BB9DD918A8CE0F00315B48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		40BB9DDB18A8CE0F00315B48 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -48,6 +61,8 @@
 		40BB9DFA18A8CE0F00315B48 /* AssetsLibraryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AssetsLibraryTests-Info.plist"; sourceTree = "<group>"; };
 		40BB9DFC18A8CE0F00315B48 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		40BB9DFE18A8CE0F00315B48 /* AssetsLibraryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetsLibraryTests.m; sourceTree = "<group>"; };
+		40BB9E0818A8CE4500315B48 /* MYRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYRootViewController.h; sourceTree = "<group>"; };
+		40BB9E0918A8CE4500315B48 /* MYRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYRootViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +124,16 @@
 			children = (
 				40BB9DE818A8CE0F00315B48 /* MYAppDelegate.h */,
 				40BB9DE918A8CE0F00315B48 /* MYAppDelegate.m */,
+				40BB9E0818A8CE4500315B48 /* MYRootViewController.h */,
+				40BB9E0918A8CE4500315B48 /* MYRootViewController.m */,
+				405AA2CE18AAF8230020FD06 /* MYAssetsGroupViewController.h */,
+				405AA2CF18AAF8230020FD06 /* MYAssetsGroupViewController.m */,
+				405AA2D418AB34C90020FD06 /* MYAssetsGroupCollectionViewController.h */,
+				405AA2D518AB34C90020FD06 /* MYAssetsGroupCollectionViewController.m */,
+				405AA2D718AB4F1E0020FD06 /* MYDateAssetCollectionViewController.h */,
+				405AA2D818AB4F1E0020FD06 /* MYDateAssetCollectionViewController.m */,
+				405AA2D118AAFCEB0020FD06 /* AssetsAccessor.h */,
+				405AA2D218AAFCEB0020FD06 /* AssetsAccessor.m */,
 				40BB9DEB18A8CE0F00315B48 /* Images.xcassets */,
 				40BB9DE018A8CE0F00315B48 /* Supporting Files */,
 			);
@@ -240,8 +265,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				405AA2D918AB4F1E0020FD06 /* MYDateAssetCollectionViewController.m in Sources */,
+				40BB9E0A18A8CE4500315B48 /* MYRootViewController.m in Sources */,
+				405AA2D018AAF8230020FD06 /* MYAssetsGroupViewController.m in Sources */,
 				40BB9DEA18A8CE0F00315B48 /* MYAppDelegate.m in Sources */,
+				405AA2D318AAFCEB0020FD06 /* AssetsAccessor.m in Sources */,
 				40BB9DE618A8CE0F00315B48 /* main.m in Sources */,
+				405AA2D618AB34C90020FD06 /* MYAssetsGroupCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +392,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AssetsLibrary/AssetsLibrary-Prefix.pch";
 				INFOPLIST_FILE = "AssetsLibrary/AssetsLibrary-Info.plist";
@@ -375,6 +406,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AssetsLibrary/AssetsLibrary-Prefix.pch";
 				INFOPLIST_FILE = "AssetsLibrary/AssetsLibrary-Info.plist";
@@ -444,6 +476,7 @@
 				40BB9E0418A8CE0F00315B48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		40BB9E0518A8CE0F00315B48 /* Build configuration list for PBXNativeTarget "AssetsLibraryTests" */ = {
 			isa = XCConfigurationList;
@@ -452,6 +485,7 @@
 				40BB9E0718A8CE0F00315B48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

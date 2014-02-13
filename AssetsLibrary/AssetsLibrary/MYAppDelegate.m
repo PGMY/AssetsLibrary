@@ -8,12 +8,34 @@
 
 #import "MYAppDelegate.h"
 
+#import "MYRootViewController.h"
+
 @implementation MYAppDelegate
+
+@synthesize window = window_;
+@synthesize myRootViewController = myRootViewController_;
+
+- (void)dealloc {
+    [self.window release];
+    [self.myRootViewController release];
+    [super dealloc];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    MYRootViewController *rootViewController = [[MYRootViewController alloc] initWithNibName:nil bundle:nil];
+    self.myRootViewController = rootViewController;
+    [rootViewController release];
+    
+//    UINavigationController *navigation = [[UINavigationController alloc]initWithRootViewController:self.myRootViewController];
+//    [self.window setRootViewController:navigation];
+//    [navigation release];
+    
+    [self.window setRootViewController:self.myRootViewController];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
