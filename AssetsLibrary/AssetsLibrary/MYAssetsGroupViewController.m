@@ -91,10 +91,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell           = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    UITableViewCell *cell           = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    }
     
     ALAssetsGroup *assetsGroup    = self.assetsGroups[indexPath.row];
     NSString      *groupName      = [assetsGroup valueForProperty:ALAssetsGroupPropertyName];
@@ -125,6 +126,7 @@
     MYAssetsGroupCollectionViewController *assetsGroupCVC = [[MYAssetsGroupCollectionViewController alloc] initWithCollectionViewLayout:layout assetsGroup:assetsGroup];
     NSLog(@"%@", self.navigationController);
     [self.navigationController pushViewController:assetsGroupCVC animated:YES];
+    [assetsGroupCVC release];
     //    MixiAssetsViewController *assetVC = [[MixiAssetsViewController alloc] initWithAssetsGroup:assetsGroup];
     //    [self.navigationController pushViewController:assetVC animated:YES];
 }

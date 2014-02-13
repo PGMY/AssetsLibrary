@@ -26,6 +26,11 @@
 @synthesize sectionList = sectionList_;
 @synthesize assetsData  = assetsData_;
 
+- (void)dealloc{
+    
+    [super dealloc];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -54,8 +59,14 @@
 {
     NSMutableArray *allAssets = [[NSMutableArray alloc] init];
     
-    self.sectionList = [[NSMutableArray alloc] init];
-    self.assetsData  = [[NSMutableDictionary alloc] init];
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    self.sectionList = arr;
+    [arr release];
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    self.assetsData  = dic;
+    [dic release];
+    
     
     // Assetsのグループタイプ
     ALAssetsGroupType assetsGroupType = ALAssetsGroupAlbum | ALAssetsGroupEvent | ALAssetsGroupFaces | ALAssetsGroupSavedPhotos;
@@ -71,6 +82,7 @@
             NSString *assetDateStr = [formatter stringFromDate:assetDate];
             [allAssets addObject:@{ ASSET: asset, DATE: assetDate, DATE_STR: assetDateStr }];
         }
+//         NSLog((@"%s [Line %d] "), __PRETTY_FUNCTION__, __LINE__);
     };
     
     NSComparator comparetor = ^NSComparisonResult (id obj1, id obj2) {
@@ -105,7 +117,7 @@
                     [self.sectionList addObject:dateStr];
                 }
             }
-            
+            [formatter release];
             [allAssets release];
             [self.collectionView reloadData];
         }
@@ -113,7 +125,7 @@
     
     ALAssetsLibraryAccessFailureBlock failureBlock = ^(NSError *error) {
     };
-    
+
     [[[AssetsAccessor sharedInstance] assetsLibrary] enumerateGroupsWithTypes:assetsGroupType usingBlock:resultBlock failureBlock:failureBlock];
 }
 
@@ -137,36 +149,29 @@
     return [self.assetsData[self.sectionList[section]] count];
 }
 
-
-
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     MYCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-                                                                withReuseIdentifier:@"header"
-                                                                       forIndexPath:indexPath];
+                                                                            withReuseIdentifier:@"header"
+                                                                                   forIndexPath:indexPath];
     
     headerView.title.text = self.sectionList[indexPath.section];
+    [headerView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.2]];
     return headerView;
 }
 
 // Method to create cell at index path
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    // UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionViewCell"];// forIndexPath:indexPath];
-    // UICollectionViewCell *cell = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CollectionViewcell" forIndexPath:indexPath];
-    
     static NSString      *cellID = @"UICollectionViewCell";
     UICollectionViewCell *cell   = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     
-//    ALAsset *asset = [self.allAssets objectAtIndex:(indexPath.row)][ASSET];
     ALAsset *asset = self.assetsData[self.sectionList[indexPath.section]][indexPath.row];
     UIImage *img   = [UIImage imageWithCGImage:[asset thumbnail]];
     
-    UIImageView *imgView = [[UIImageView alloc] init]; // [[UIImageView alloc] initWithImage:[[self.assets objectAtIndex:indexPath.section] objectAtIndex:indexPath.item]];
-    [imgView setImage:img];
-    imgView.frame = CGRectMake(0, 0, 55, 55); // self.imageFrame;//CGRectMake(0.0, 0.0, 96.0, 72.0);
+    UIImageView *imgView = [[UIImageView alloc] init];    [imgView setImage:img];
+    imgView.frame = CGRectMake(0, 0, 60, 60);
     
-    // cellにimgViewをセット
     [cell addSubview:imgView];
     
     
@@ -181,6 +186,7 @@
 {
     // クリックされたらよばれる
     NSLog(@"Clicked %ld-%ld", indexPath.section, indexPath.row);
+    
 }
 
 @end

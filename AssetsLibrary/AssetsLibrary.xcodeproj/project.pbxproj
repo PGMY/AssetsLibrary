@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		404E5DB918AC8BF900CC9A65 /* MYAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 404E5DB818AC8BF900CC9A65 /* MYAsset.m */; };
 		404E5DBC18AC9CE000CC9A65 /* MYCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 404E5DBB18AC9CE000CC9A65 /* MYCollectionHeaderView.m */; };
 		405AA2D018AAF8230020FD06 /* MYAssetsGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 405AA2CF18AAF8230020FD06 /* MYAssetsGroupViewController.m */; };
 		405AA2D318AAFCEB0020FD06 /* AssetsAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 405AA2D218AAFCEB0020FD06 /* AssetsAccessor.m */; };
@@ -39,8 +38,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		404E5DB718AC8BF900CC9A65 /* MYAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYAsset.h; sourceTree = "<group>"; };
-		404E5DB818AC8BF900CC9A65 /* MYAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYAsset.m; sourceTree = "<group>"; };
 		404E5DBA18AC9CE000CC9A65 /* MYCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYCollectionHeaderView.h; sourceTree = "<group>"; };
 		404E5DBB18AC9CE000CC9A65 /* MYCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYCollectionHeaderView.m; sourceTree = "<group>"; };
 		405AA2CE18AAF8230020FD06 /* MYAssetsGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYAssetsGroupViewController.h; sourceTree = "<group>"; };
@@ -140,8 +137,6 @@
 				405AA2D818AB4F1E0020FD06 /* MYDateAssetCollectionViewController.m */,
 				404E5DBA18AC9CE000CC9A65 /* MYCollectionHeaderView.h */,
 				404E5DBB18AC9CE000CC9A65 /* MYCollectionHeaderView.m */,
-				404E5DB718AC8BF900CC9A65 /* MYAsset.h */,
-				404E5DB818AC8BF900CC9A65 /* MYAsset.m */,
 				405AA2D118AAFCEB0020FD06 /* AssetsAccessor.h */,
 				405AA2D218AAFCEB0020FD06 /* AssetsAccessor.m */,
 				40BB9DEB18A8CE0F00315B48 /* Images.xcassets */,
@@ -277,7 +272,6 @@
 			files = (
 				405AA2D918AB4F1E0020FD06 /* MYDateAssetCollectionViewController.m in Sources */,
 				40BB9E0A18A8CE4500315B48 /* MYRootViewController.m in Sources */,
-				404E5DB918AC8BF900CC9A65 /* MYAsset.m in Sources */,
 				405AA2D018AAF8230020FD06 /* MYAssetsGroupViewController.m in Sources */,
 				40BB9DEA18A8CE0F00315B48 /* MYAppDelegate.m in Sources */,
 				405AA2D318AAFCEB0020FD06 /* AssetsAccessor.m in Sources */,
