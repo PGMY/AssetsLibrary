@@ -9,13 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface MYDateAssetCollectionViewController : UICollectionViewController {
-    NSMutableDictionary *dateAssets_;
     NSMutableArray *allAssets_;
-    NSMutableDictionary *sections_;
+    NSMutableDictionary *assetsSection_;
 }
 
-@property (strong, nonatomic) NSMutableDictionary *dateAssets;
 @property (strong, nonatomic) NSMutableArray *allAssets;
-@property (strong, nonatomic) NSMutableDictionary *sections;
+@property (strong, nonatomic) NSMutableDictionary *assetsSection;
 
 @end
