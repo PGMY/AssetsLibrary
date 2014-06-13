@@ -167,10 +167,13 @@
     UICollectionViewCell *cell   = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     
     ALAsset *asset = self.assetsData[self.sectionList[indexPath.section]][indexPath.row];
-    UIImage *img   = [UIImage imageWithCGImage:[asset thumbnail]];
+    UIImage *img   = [UIImage imageWithCGImage:[asset aspectRatioThumbnail]]; //thumbnail]];
     
-    UIImageView *imgView = [[UIImageView alloc] init];    [imgView setImage:img];
-    imgView.frame = CGRectMake(0, 0, 60, 60);
+    UIImageView *imgView = [[UIImageView alloc] init];
+    [imgView setImage:img];
+    [imgView setContentMode:UIViewContentModeScaleAspectFit];
+    imgView.frame = CGRectMake(0, 0, 106, 70);
+    imgView.backgroundColor = [UIColor blackColor];
     
     [cell addSubview:imgView];
     

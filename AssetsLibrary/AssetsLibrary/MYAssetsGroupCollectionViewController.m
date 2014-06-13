@@ -35,6 +35,7 @@
     return self;
 }
 
+
 - (id)initWithCollectionViewLayout:(UICollectionViewLayout *)layout assetsGroup:(ALAssetsGroup*)assetsGroup
 {
     if (self = [super initWithCollectionViewLayout:layout]) {
