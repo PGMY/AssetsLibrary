@@ -2,7 +2,7 @@
 //  AssetsLibraryTests.m
 //  AssetsLibraryTests
 //
-//  Created by Mika Yamamoto on 2014/02/10.
+//  Created by PGMY on 2014/02/10.
 //  Copyright (c) 2014年 MikaYamamoto. All rights reserved.
 //
 

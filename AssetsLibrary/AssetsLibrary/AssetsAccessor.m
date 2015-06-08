@@ -2,7 +2,7 @@
 //  AssetsAccessor.m
 //  AssetsLibrary
 //
-//  Created by Mika Yamamoto on 2014/02/12.
+//  Created by PGMY on 2014/02/12.
 //  Copyright (c) 2014年 MikaYamamoto. All rights reserved.
 //
 
