@@ -3,7 +3,7 @@
 //  AssetsLibrary
 //
 //  Created by PGMY on 2014/02/10.
-//  Copyright (c) 2014年 MikaYamamoto. All rights reserved.
+//  Copyright (c) 2014年 PGMY. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
